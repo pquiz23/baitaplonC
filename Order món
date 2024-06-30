@@ -1,0 +1,99 @@
+void orderDish() { 
+
+    if(number!=0){ 
+
+    showDish(); 
+
+    int x; 
+
+    double tong = 0; 
+
+    while (1) { 
+
+        printf("So mon ban muon chon: "); 
+
+        scanf("%d", &x); 
+
+        if (x > 0 && x <= number) { 
+
+            break; 
+
+        } else { 
+
+            printf("So mon vuot qua so mon co trong menu. Vui long nhap lai!\n"); 
+
+        } 
+
+    } 
+
+    FILE *file = fopen("hoadon.txt", "w"); 
+
+    if (file == NULL) { 
+
+        printf("Khong the tao file hoa don!\n"); 
+
+        return; 
+
+    } 
+
+    for (int i = 0; i < x; i++) { 
+
+        int y, z; 
+
+        while (1) { 
+
+            printf("Nhap ma mon thu %d: ", (i + 1)); 
+
+            scanf("%d", &y); 
+
+            int found = 0; 
+
+            for (int j = 0; j < number; j++) { 
+
+                if (menu[j].id == y) { 
+
+                    printf("Nhap so luong mon %s: ", menu[j].name); 
+
+                    scanf("%d", &z); 
+
+                    tong += menu[j].price * z; 
+
+                    fprintf(file, "%d %s %.2lf Thanh tien: %.2lf\n", menu[j].id, menu[j].name, menu[j].price, menu[j].price * z); 
+
+                    found = 1; 
+
+                    break; 
+
+                } 
+
+            } 
+
+            if (found) { 
+
+                break; 
+
+            } else { 
+
+                printf("Khong tim thay ma mon nay trong menu. Vui long nhap lai!\n"); 
+
+            } 
+
+        } 
+
+    } 
+
+    fprintf(file, "Tong thanh toan la: %.2lf\n", tong); 
+
+    fclose(file); 
+
+    printf("Tong thanh toan la: %.2lf\n", tong); 
+
+    } else { 
+
+        printf("Chua co mon vui long nhap them mon.\n"); 
+
+        addDish(); 
+
+    } 
+
+} 
