@@ -1,0 +1,63 @@
+void calculateSalaryById() { 
+
+    if(nop!=0){ 
+
+    int id; 
+
+    int found = 0; 
+
+    double hoursWorked; 
+
+    double totalSalary; 
+
+ 
+
+    printf("Nhap ma nhan vien ban muon tinh luong: "); 
+
+    scanf("%d", &id); 
+
+    while(!found){ 
+
+    for (int i = 0; i < nop; i++) { 
+
+        if (staff[i].id == id) { 
+
+            printf("Nhap so gio lam viec cua nhan vien %s: ", staff[i].name); 
+
+            scanf("%lf", &hoursWorked); 
+
+            totalSalary = staff[i].slr * hoursWorked; 
+
+            printf("Tong tien luong cua nhan vien %s (ID %d) la: %.2lf\n", staff[i].name, staff[i].id, totalSalary); 
+
+            found = 1; 
+
+            break; 
+
+        } 
+
+    } 
+
+    if (!found) { 
+
+        printf("Khong tim thay nhan vien voi ma ID %d. Vui long thu lai.\nNeu muon thoat nhap 0\n", id); 
+
+    } 
+
+    if(id==0){ 
+
+        break; 
+
+    } 
+
+    } 
+
+    } else { 
+
+        printf("Chua co nhan vien vui long them nhan vien.\n"); 
+
+        addStaff(); 
+
+    } 
+
+} 
